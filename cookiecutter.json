@@ -16,9 +16,9 @@
     "github_repo": "{% if cookiecutter.git_remote[:4] == '[Y1]' -%}{{ cookiecutter.project_slug }}{% else %}[Does not apply, just press ENTER.]{% endif %}",
     "git_remote_url": "{% if cookiecutter.git_remote[:4] == '[Y1]' %}git@github.com:{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}.git{% elif cookiecutter.git_remote[:4] == '[Y2]' %}[Enter server URL:]{% else %}[Does not apply, just press ENTER.]{% endif %}",
     "license": [
-        "MIT",
-        "MIT for code and CC-BY-SA-4.0 for research content.",
-        "None"
+        "[1] MIT",
+        "[2] MIT for code and CC-BY-SA-4.0 for research content.",
+        "[3] None"
     ],
     "r_packrat": [
         "[Y] Use R Packrat for library management.",

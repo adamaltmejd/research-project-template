@@ -1,50 +1,27 @@
-# Project Template for a Reproducible Research Project
+# Project Template for Research Projects using R
 
 ## Setup
 
-To start a new research project, ensure all the requirements are fulfilled then run
+To start a new research project, ensure all the requirements are fulfilled then run in your terminal.
 
 ```
-cookiecutter
+cookiecutter https://github.com/adamaltmejd/research-project-template
 ```
+
+You can then follow the instructions on screen. The template allows you to initialize a Git repository and push the content to Github (or a different remote). If using Github, ensure you set up an empty repository before running the code.
 
 ## Requirements
 
-The template uses [cookiecutter](https://github.com/audreyr/cookiecutter) for scaffolding. Currently only tested on OS X.
+Using the template requires:
 
-To setup a new project you need to have `R` installed.
+* [Python3](https://www.python.org/)
+* [cookiecutter](https://github.com/audreyr/cookiecutter)
+* [R](https://www.r-project.org/)
+* [Packrat](https://rstudio.github.io/packrat/) (optional)
 
-# Working with R in Docker
+## References
 
-One way of using this template is to work with R in a docker container. To do so, first build your container using
+This template was inspired by the following similar templates that might suit your needs better:
 
-```sh
-docker build -t test_image -f Dockerfile --build-arg UID=$(id -u) .
-```
-
-We can then create the container running
-
-```sh
-docker run -it -v $(pwd):/work -p 8888:8888 --name test_container test_image
-```
-
-And jump into it by doing
-
-```sh
-if [ `docker inspect -f {% raw -%}{{.State.Running}}{%- endraw %} test_container` = "false" ] ; then
-        docker start test_container
-fi
-start-container: ## start docker container
-	@echo "$$START_DOCKER_CONTAINER" | $(SHELL)
-	@echo "Launched test_container..."
-docker attach test_container
-```
-
-For testing, to cleanup
-
-```sh
-docker ps --all
-docker images --all
-docker rm test_container
-docker rmi test_image
-```
+* [Reproducible Science](https://github.com/mkrapp/cookiecutter-reproducible-science)
+* [Econ Project Templates](https://github.com/hmgaudecker/econ-project-templates)
