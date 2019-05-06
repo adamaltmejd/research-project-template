@@ -22,8 +22,8 @@ if __name__ == "__main__":
         print(
             bsc.FAIL +
             'ERROR: The project slug ({{cookiecutter.project_slug}})'
-            'is not a valid Python module name. Please do not use a'
-            '- and use _ instead' + bsc.END)
+            'is not a valid Python module name. Please do not use '
+            '"-", use "_" instead' + bsc.END)
         sys.exit(1)
 
     if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:

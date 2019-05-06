@@ -37,7 +37,7 @@ if __name__ == "__main__":
             ["git", "commit", "-m", "'Research Project: Initial Commit'"])
 
         if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
-            subprocess.run(["git", "push"])
+            subprocess.run(["git", "push", "-u", "origin" "master"])
 
     if "{{ cookiecutter.license }}" == "None":
         remove_file('LICENSE')
