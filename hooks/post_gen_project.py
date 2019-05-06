@@ -24,21 +24,6 @@ def remove_file(filepath):
 
 if __name__ == "__main__":
 
-    if "{{ cookiecutter.git_init }}" == "Y":
-
-        subprocess.run(["git", "init"])
-
-        if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
-            subprocess.run(["git", "remote", "add", "origin",
-                            "{{ cookiecutter.git_remote_url }}"])
-
-        subprocess.run(["git", "add", "."])
-        subprocess.run(
-            ["git", "commit", "-m", "'Research Project: Initial Commit'"])
-
-        if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
-            subprocess.run(["git", "push", "-u", "origin" "master"])
-
     if "{{ cookiecutter.license }}" == "None":
         remove_file('LICENSE')
 
@@ -47,7 +32,7 @@ if __name__ == "__main__":
         r_command = ('packrat::set_opts('
                      'auto.snapshot = FALSE,'
                      'use.cache = TRUE,'
-                     'print.banner.on.startup = "auto"'
+                     'print.banner.on.startup = "auto",'
                      'vcs.ignore.lib = TRUE,'
                      'vcs.ignore.src = TRUE,'
                      'quiet.package.installation = TRUE,'
@@ -56,9 +41,9 @@ if __name__ == "__main__":
                      'symlink.system.packages = TRUE);'
                      'packrat::init()')
         try:
-            subprocess.run(["Rscript", "-e", r_command],
-                           stderr=subprocess.DEVNULL,
-                           stdout=subprocess.DEVNULL)
+            subprocess.run(["Rscript", "-e", r_command], check=True,
+                           stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL)
         except OSError:
             print(bsc.FAIL + "Rscript executable not found." + bsc.END)
             sys.exit(1)
@@ -70,3 +55,22 @@ if __name__ == "__main__":
     if "{{ cookiecutter.r_append_rprofile }}"[:3] == "[Y]":
         with open(os.path.join(PROJECT_DIRECTORY, ".Rprofile"), "a") as f:
             f.write('source("~/.Rprofile")')
+
+    if "{{ cookiecutter.git_init }}" == "Yes":
+
+        subprocess.run(["git", "init"],
+                       stdout=subprocess.DEVNULL)
+
+        if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
+            subprocess.run(["git", "remote", "add", "origin",
+                            "{{ cookiecutter.git_remote_url }}"],
+                           stdout=subprocess.DEVNULL)
+
+        subprocess.run(["git", "add", "."], stdout=subprocess.DEVNULL)
+        subprocess.run(["git", "commit", "-m",
+                        "'Research Project: Initial Commit'"],
+                       stdout=subprocess.DEVNULL)
+
+        if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
+            subprocess.run(["git", "push", "-u", "origin" "master"],
+                           stdout=subprocess.DEVNULL)
