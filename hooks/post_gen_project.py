@@ -61,16 +61,14 @@ if __name__ == "__main__":
         subprocess.run(["git", "init"],
                        stdout=subprocess.DEVNULL)
 
-        if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
-            subprocess.run(["git", "remote", "add", "origin",
-                            "{{ cookiecutter.git_remote_url }}"],
-                           stdout=subprocess.DEVNULL)
-
         subprocess.run(["git", "add", "."], stdout=subprocess.DEVNULL)
         subprocess.run(["git", "commit", "-m",
                         "'Research Project: Initial Commit'"],
                        stdout=subprocess.DEVNULL)
 
         if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
-            subprocess.run(["git", "push", "-u", "origin" "master"],
+            subprocess.run(["git", "remote", "add", "origin",
+                            "{{ cookiecutter.git_remote_url }}"],
+                           stdout=subprocess.DEVNULL)
+            subprocess.run(["git", "push", "-u", "origin master"],
                            stdout=subprocess.DEVNULL)
