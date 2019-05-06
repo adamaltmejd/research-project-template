@@ -1,0 +1,31 @@
+{
+    "full_name": "Adam Altmejd",
+    "email": "adam@altmejd.se",
+    "project_name": "My Research Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "git_init": [
+        "Yes",
+        "No"
+    ],
+    "git_remote": [
+        "[Y1] I have created an empty Github repository on Github.com",
+        "[Y2] I use a different Git remote server (where the repository has been created).",
+        "[N] Keep the repository local only."
+    ],
+    "github_username": "{% if cookiecutter.git_remote[:4] == '[Y1]' %}{{ cookiecutter.full_name.lower().replace(' ', '').replace('-', '_') }}{% else %}[Does not apply, just press ENTER.]{% endif %}",
+    "github_repo": "{% if cookiecutter.git_remote[:4] == '[Y1]' -%}{{ cookiecutter.project_slug }}{% else %}[Does not apply, just press ENTER.]{% endif %}",
+    "git_remote_url": "{% if cookiecutter.git_remote[:4] == '[Y1]' %}git@github.com:{{cookiecutter.github_username}}/{{cookiecutter.github_repo}}.git{% elif cookiecutter.git_remote[:4] == '[Y2]' %}[Enter server URL:]{% else %}[Does not apply, just press ENTER.]{% endif %}",
+    "license": [
+        "MIT",
+        "MIT for code and CC-BY-SA-4.0 for research content.",
+        "None"
+    ],
+    "r_packrat": [
+        "[Y] Use R Packrat for library management.",
+        "[N] Don't initialize Packrat now."
+    ],
+    "r_append_rprofile": [
+        "[Y] Append sourcing of global ~/.Rprofile.",
+        "[N] Do not source it."
+    ]
+}
