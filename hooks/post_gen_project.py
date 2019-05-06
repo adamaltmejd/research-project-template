@@ -68,7 +68,5 @@ if __name__ == "__main__":
 
         if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
             subprocess.run(["git", "remote", "add", "origin",
-                            "{{ cookiecutter.git_remote_url }}"],
-                           stdout=subprocess.DEVNULL)
-            subprocess.run(["git", "push", "-u", "origin master"],
-                           stdout=subprocess.DEVNULL)
+                            "{{ cookiecutter.git_remote_url }}"])
+            subprocess.run(["git", "push", "-u", "origin master"])
