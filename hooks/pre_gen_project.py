@@ -17,13 +17,12 @@ class bsc:
 
 if __name__ == "__main__":
 
-    if not re.match(r'^[_a-zA-Z][_a-zA-Z0-9]+$',
+    if not re.match(r'^[a-zA-Z][_\-a-zA-Z0-9]+$',
                     '{{ cookiecutter.project_slug }}'):
         print(
             bsc.FAIL +
-            'ERROR: The project slug ({{cookiecutter.project_slug}})'
-            'is not a valid Python module name. Please do not use '
-            '"-", use "_" instead' + bsc.END)
+            'The slug ({{cookiecutter.project_slug}})'
+            'needs to formatted as a valid github repository.' + bsc.END)
         sys.exit(1)
 
     if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
