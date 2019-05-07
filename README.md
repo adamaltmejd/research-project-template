@@ -2,13 +2,15 @@
 
 ## Setup
 
-To start a new research project, ensure all the requirements are fulfilled then run in your terminal.
+To start a new research project, ensure all the requirements are fulfilled then execute the following code in your terminal.
 
-```
+```sh
 cookiecutter https://github.com/adamaltmejd/research-project-template
 ```
 
-You can then follow the instructions on screen. The template allows you to initialize a Git repository and push the content to Github (or a different remote). If using Github, ensure you set up an empty repository before running the code.
+Follow the instructions on screen. The template allows you to initialize a Git repository and push the content to Github (or a different remote).
+
+If you are using Github, you need to first set up an **empty** repository. Do not add `.gitignore` or `LICENSE` files when asked.
 
 ## Requirements
 
