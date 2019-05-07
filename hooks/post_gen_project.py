@@ -78,12 +78,18 @@ if __name__ == "__main__":
                                 "{{ cookiecutter.git_remote_url }}"],
                                stdout=subprocess.DEVNULL, check=True)
             except:
-                print(bsc.FAIL + "Failed to add Git Remote: \n{{ cookiecutter.git_remote_url }}\n"
+                print(bsc.FAIL + "Failed to add Git Remote: "
+                      "\n{{ cookiecutter.git_remote_url }}\n"
                       "You will have to add it yourself." + bsc.END)
             try:
-                subprocess.run(["git", "push", "-v", "-u",
+                subprocess.run(["git", "push", "-u",
                                 "origin", "master"],
+                               stderr=subprocess.DEVNULL,
                                stdout=subprocess.DEVNULL, check=True)
             except:
                 print(bsc.FAIL + "Failed to push repo to Remote. "
                       "You will have to do that yourself." + bsc.END)
+
+    print(bsc.OKGREEN +
+          "Finished creating project: {{ cookiecutter.project_name }}" +
+          bsc.END)
