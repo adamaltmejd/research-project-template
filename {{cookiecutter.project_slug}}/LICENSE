@@ -1,4 +1,4 @@
-{%- if cookiecutter.license[:1] == '1' -%}
+{%- if cookiecutter.license[:3] == '[1]' -%}
 MIT License
 
 Copyright (c) {% now 'local', '%Y' %} {{ cookiecutter.full_name }}
@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-{%- elif cookiecutter.license[:2] == '2' -%}
+{%- elif cookiecutter.license[:3] == '[2]' -%}
 Copyright (c) {% now 'local', '%Y' %} {{ cookiecutter.full_name }}
 
 All source code is distributed under the MIT license.
@@ -29,5 +29,5 @@ The published data, and research materials are available under the Creative
 Commons Attribution-ShareAlike 4.0 International License.
 
 SPDX-License-Identifier: MIT AND CC-BY-SA-4.0
-{%- elif cookiecutter.license[:3] == '3' -%}
+{%- elif cookiecutter.license[:3] == '[3]' -%}
 {%- endif %}
