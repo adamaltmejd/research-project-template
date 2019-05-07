@@ -58,15 +58,32 @@ if __name__ == "__main__":
 
     if "{{ cookiecutter.git_init }}" == "Yes":
 
+        # Initialize git repo
         subprocess.run(["git", "init"],
-                       stdout=subprocess.DEVNULL)
+                       stdout=subprocess.DEVNULL, check=True)
 
-        subprocess.run(["git", "add", "."], stdout=subprocess.DEVNULL)
+        # Add all files in project folder
+        subprocess.run(["git", "add", "."],
+                       stdout=subprocess.DEVNULL, check=True)
+
+        # Commit initial scaffold
         subprocess.run(["git", "commit", "-m",
-                        "'Research Project: Initial Commit'"],
-                       stdout=subprocess.DEVNULL)
+                        "Initial autocommit"],
+                       stdout=subprocess.DEVNULL, check=True)
 
+        # If remote configured, push initial commit to remote
         if "{{ cookiecutter.git_remote }}"[:4] in ["[Y1]", "[Y2]"]:
-            subprocess.run(["git", "remote", "add", "origin",
-                            "{{ cookiecutter.git_remote_url }}"])
-            subprocess.run(["git", "push", "-u", "origin master"])
+            try:
+                subprocess.run(["git", "remote", "add", "origin",
+                                "{{ cookiecutter.git_remote_url }}"],
+                               stdout=subprocess.DEVNULL, check=True)
+            except:
+                print(bsc.FAIL + "Failed to add Git Remote: \n{{ cookiecutter.git_remote_url }}\n"
+                      "You will have to add it yourself." + bsc.END)
+            try:
+                subprocess.run(["git", "push", "-v", "-u",
+                                "origin", "master"],
+                               stdout=subprocess.DEVNULL, check=True)
+            except:
+                print(bsc.FAIL + "Failed to push repo to Remote. "
+                      "You will have to do that yourself." + bsc.END)
