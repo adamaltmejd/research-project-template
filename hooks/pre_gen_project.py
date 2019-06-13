@@ -40,11 +40,11 @@ if __name__ == "__main__":
                 bsc.END)
             sys.exit(1)
 
-    if "{{ cookiecutter.r_packrat }}"[:3] == "[Y]":
+    if "{{ cookiecutter.r_renv }}"[:3] == "[Y]":
         try:
             subprocess.run(
                 ["Rscript", "-e",
-                 'if (!"packrat" %in% rownames(installed.packages())) { stop() }'],
+                 'if (!"renv" %in% rownames(installed.packages())) { stop() }'],
                 check=True,
                 stderr=subprocess.DEVNULL,
                 stdout=subprocess.DEVNULL)
@@ -53,5 +53,5 @@ if __name__ == "__main__":
             sys.exit(1)
         except subprocess.CalledProcessError:
             print(bsc.FAIL +
-                  "Please install the Packrat R library first." + bsc.END)
+                  "Please install the Renv R library first." + bsc.END)
             sys.exit(1)

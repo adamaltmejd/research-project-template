@@ -27,19 +27,9 @@ if __name__ == "__main__":
     if "{{ cookiecutter.license }}" == "None":
         remove_file('LICENSE')
 
-    # Initialize Packrat (R)
-    if "{{ cookiecutter.r_packrat }}"[:3] == "[Y]":
-        r_command = ('packrat::set_opts('
-                     'auto.snapshot = FALSE,'
-                     'use.cache = TRUE,'
-                     'print.banner.on.startup = "auto",'
-                     'vcs.ignore.lib = TRUE,'
-                     'vcs.ignore.src = TRUE,'
-                     'quiet.package.installation = TRUE,'
-                     'snapshot.recommended.packages = FALSE,'
-                     'load.external.packages.on.startup = TRUE,'
-                     'symlink.system.packages = TRUE);'
-                     'packrat::init()')
+    # Initialize Renv (R)
+    if "{{ cookiecutter.r_renv }}"[:3] == "[Y]":
+        r_command = ('renv::init()')
         try:
             subprocess.run(["Rscript", "-e", r_command], check=True,
                            stdout=subprocess.DEVNULL,
@@ -48,7 +38,7 @@ if __name__ == "__main__":
             print(bsc.FAIL + "Rscript executable not found." + bsc.END)
             sys.exit(1)
         except subprocess.CalledProcessError:
-            print(bsc.FAIL + "Error initializing Packrat." + bsc.END)
+            print(bsc.FAIL + "Error initializing Renv." + bsc.END)
             sys.exit(1)
 
     # Write sourcing of global Rprofile to local one.

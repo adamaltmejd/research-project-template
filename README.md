@@ -19,7 +19,7 @@ Using the template requires:
 * [Python3](https://www.python.org/)
 * [cookiecutter](https://github.com/audreyr/cookiecutter)
 * [R](https://www.r-project.org/)
-* [Packrat](https://rstudio.github.io/packrat/) (optional)
+* [Renv](https://github.com/rstudio/renv) (optional)
 * [Git](https://git-scm.com/) (optional)
 
 If on Mac, an easy way to install Python and Git is using [Homebrew](https://brew.sh/).
